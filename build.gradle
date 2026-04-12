@@ -1,0 +1,46 @@
+plugins {
+	id 'java'
+	alias(libs.plugins.springBoot)
+	id 'jacoco'
+}
+
+group = 'com.cleancoders'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+apply from: 'gradle/dependencies.gradle'
+
+jacocoTestReport {
+	reports {
+		html.required.set(true)
+	}
+	test {
+		jacoco {
+			destinationFile = layout.buildDirectory.file("jacoco/jacocoTest.exec").get().asFile
+		}
+	}
+	afterEvaluate {
+		classDirectories.from = classDirectories.files.collect {
+			fileTree(dir: it, excludes: [
+					'com/cleancoders/redistoolkit/entity/**'
+			])
+		}
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+build.dependsOn tasks.jacocoTestReport
+
+

@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: redistoolkit
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        jdbc:
+          time_zone: UTC
+          batch_size: 50
+        id:
+          new_generator_mappings: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: INFO
+        type.descriptor.sql: INFO
+        orm.jdbc.bind: INFO
+

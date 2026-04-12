@@ -1,0 +1,22 @@
+# Version catalog for centralized dependency versions
+
+[versions]
+springdoc = "3.0.0"
+postgresql = "42.6.0"
+springboot = "4.0.5"
+
+[libraries]
+springdocOpenapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+springBootBom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
+
+# Spring Boot starter aliases (version is managed by the BOM)
+springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "springboot" }
+springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springboot" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springboot" }
+springBootStarterWebMvcTest = { module = "org.springframework.boot:spring-boot-starter-webmvc-test", version.ref = "springboot" }
+springBootStarterDataRedis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springboot" }
+springBootStarterDataRedisTest = { module = "org.springframework.boot:spring-boot-starter-data-redis-test", version.ref = "springboot" }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springboot" }
